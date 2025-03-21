@@ -40,9 +40,9 @@ pipeline {
 
     stage('Login to Dockerhub') {
       steps {
-        withCredentials([string(credentialsId: 'dockercode', variable: 'dockervarcode')]) {
-          sh 'docker login -u shivareddy24 -p ${dockervarcode}'
-        }
+       withCredentials([usernamePassword(credentialsId: 'dockercode', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+       sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+       }
       }
     }
 
