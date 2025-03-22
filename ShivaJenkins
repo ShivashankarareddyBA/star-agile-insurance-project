@@ -51,6 +51,11 @@ pipeline {
         sh 'docker push shivareddy24/insureme:latest'
       }
     }
+stage('Ansible Playbook') {
+      steps {
+        ansiblePlaybook credentialsId: 'sshkey', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy.yml', vaultTmpPath: ''
+                                }
+            }
 
     // New stage: SSH to Ansible server and deploy the container
    // stage('Deploy with Ansible') {
