@@ -24,7 +24,7 @@ pipeline {
         echo 'This is for generating Test Results'
         publishHTML([
           allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false,
-          reportDir: '/var/lib/jenkins/workspace/InsureMe/target/surefire-reports',
+          reportDir: '/var/lib/jenkins/workspace/insuranceproject/target/surefire-reports',
           reportFiles: 'index.html', reportName: 'HTML Report',
           reportTitles: '', useWrapperFileDirectly: true
         ])
@@ -53,17 +53,17 @@ pipeline {
     }
 
     // New stage: SSH to Ansible server and deploy the container
-    stage('Deploy with Ansible') {
-      steps {
-        sshagent(['ansible-ssh-key']) {
-          sh '''
-          ssh -o StrictHostKeyChecking=no ansible-user@ANSIBLE_SERVER_IP <<EOF
-          cd /home/ansible-user/ansible-deployment
-          ansible-playbook deploy_insureme.yml
-          EOF
-          '''
-        }
-      }
-    }
+   // stage('Deploy with Ansible') {
+     // steps {
+      //  sshagent(['ansible-ssh-key']) {
+       //   sh '''
+       //   ssh -o StrictHostKeyChecking=no ansible-user@ANSIBLE_SERVER_IP <<EOF
+        //  cd /home/ansible-user/ansible-deployment
+       //   ansible-playbook deploy_insureme.yml
+      //    EOF
+     //     '''
+     //   }
+     // }
+   // }
   }
 }
